@@ -51,12 +51,12 @@ JOIN
 
 7. Selezionare per ogni studente quanti tentativi ha fatto per superare ciascuno dei suoi
 esami:
-	SELECT `students`.`name`, `students`.`surname`, COUNT(`exams`.`id`) AS `num_attempt`
+	SELECT `students`.`name`, `students`.`surname`, `courses`.`name` AS `course_name`, COUNT(`exam_student`.`vote`) AS `num_attempts`
 	FROM `students`
 	JOIN `exam_student` ON `exam_student`.`student_id` = `students`.`id`
 	JOIN `exams` ON `exams`.`id` = `exam_student`.`exam_id`
 	JOIN `courses` ON `courses`.`id` = `exams`.`course_id`
-	GROUP BY `students`.`id`;
+	GROUP BY `students`.`id`, `courses`.`id`
 
 8. BONUS: Quali esami mancano a Ursula Benedetti per laurearsi (matricola n.
 624567)?
